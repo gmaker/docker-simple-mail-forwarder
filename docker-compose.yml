@@ -1,9 +1,11 @@
-smf:
+version: "3.8"
+
+services:
+  mail-forwarder:
     image: zixia/simple-mail-forwarder
-    ports:
-        - "25:25"
-    environment:
-        - SMF_CONFIG=testi@testo.com:test@test.com:test
-        
-    deployment_strategy: high_availability
+    container_name: mail-forwarder
     restart: always
+    ports:
+      - "25:25"                         # проброс SMTP-порта
+    environment:
+      SMF_CONFIG: "@recipely.ru:your@gmail.com"
